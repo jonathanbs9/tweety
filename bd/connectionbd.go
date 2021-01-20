@@ -8,11 +8,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-/* MongC va a tomar el valor de ConnectDB*/
+//MongoC var => va a tomar el valor de ConnectDB()
 var MongoC = ConnectDB()
-var clientOptions = options.Client().ApplyURI("mongodb+srv")
+var clientOptions = options.Client().ApplyURI("mongodb+srv://jonathans:123jonathans@cluster0.9q3h0.mongodb.net/tweety?retryWrites=true&w=majority")
 
-/* ConnectDB() => va a devolver una conexion de tipo client*/
+//ConnectDB func => va a devolver una conexion de tipo client*/
 func ConnectDB() *mongo.Client {
 	/* El contexto es un espacio en memoria donde voy a poder compartir y setear un context de ejecución.
 	   Con el TODO le estoy diciendo que no haya ningun tipo de restriccion. */
@@ -33,7 +33,7 @@ func ConnectDB() *mongo.Client {
 	return client
 }
 
-/* CheckConnection => ping a la base de datos.*/
+// CheckConnection func => ping a la base de datos.*/
 func CheckConnection() int {
 	err := MongoC.Ping(context.TODO(), nil)
 	if err != nil {
