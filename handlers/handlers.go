@@ -6,13 +6,20 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/jonathanbs9/tweety/middlewares"
+	"github.com/jonathanbs9/tweety/routers"
 	"github.com/rs/cors"
 )
 
-/* Handlers()*/
+// Handlers func
 func Handlers() {
 	/* Creamos objeto de tipo router.*/
 	router := mux.NewRouter()
+
+	/* Creación de rutas.*/
+	/* Llamo a signup de tipo post. Ejecuta el middleware y chequea la bd si está ok, le pasa el control
+	   al router. */
+	router.HandleFunc("/signup", middlewares.CheckDB(routers.SignUp)).Methods("POST")
 
 	/*Abrimos puerto*/
 	PORT := os.Getenv("PORT")
