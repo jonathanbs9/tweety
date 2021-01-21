@@ -20,6 +20,7 @@ func Handlers() {
 	/* Llamo a signup de tipo post. Ejecuta el middleware y chequea la bd si está ok, le pasa el control
 	   al router. */
 	router.HandleFunc("/signup", middlewares.CheckDB(routers.SignUp)).Methods("POST")
+	router.HandleFunc("/login", middlewares.CheckDB(routers.Login)).Methods("POST")
 
 	/*Abrimos puerto*/
 	PORT := os.Getenv("PORT")
