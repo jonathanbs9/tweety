@@ -11,7 +11,7 @@ import (
 // ViewProfile => devuelve un perfil
 func ViewProfile(w http.ResponseWriter, r *http.Request) {
 	// Seteamos el header para la respuesta
-	w.Header().Add("content-type", "application/json")
+	w.Header().Add("Content-type", "application/json")
 
 	// Obtengo por url al id
 	ID := r.URL.Query().Get("id")
@@ -39,7 +39,6 @@ func ViewProfile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("content-type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(profile)
 }
