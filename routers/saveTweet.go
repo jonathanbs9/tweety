@@ -11,7 +11,7 @@ import (
 
 // SaveTweet func => Permite grabar el tweet en la base de datos.
 func SaveTweet(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("content-type", "application/json")
+	w.Header().Set("Content-type", "application/json")
 	var message models.Tweet
 	err := json.NewDecoder(r.Body).Decode(&message)
 
@@ -25,7 +25,12 @@ func SaveTweet(w http.ResponseWriter, r *http.Request) {
 	// Tengo que convertir el json a bson
 	_, status, err := bd.InsertTweet(record)
 	if err != nil {
-		http.Error(w, "Error al insertar el Tweet => "+err.Error(), 400)
+		//http.Error(w, "Error al insertar el Tweet => "+err.Error(), 400)
+		msgErrorTweet := models.ResponseError{
+			Message: "Error al insertar el Tweet => " + err.Error(),
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(msgErrorTweet)
 		return
 	}
 
@@ -41,14 +46,18 @@ func SaveTweet(w http.ResponseWriter, r *http.Request) {
 
 	// Cheque si status es false. No siempre da err da error
 	if status == false {
-		http.Error(w, "No se pudo insertar el Tweet => "+err.Error(), 400)
+		//http.Error(w, "No se pudo insertar el Tweet => "+err.Error(), 400)
+		msgErrorTweet := models.ResponseError{
+			Message: "No se pudo insertar el Tweet => " + err.Error(),
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(msgErrorTweet)
 		return
 	}
 
 	// Si no hay errores, se envía el tweet correctamente
-	w.Header().Set("content-type", "application/json")
 	respOk := models.ResponseError{
-		Message: "Tweet guardado",
+		Message: "Tweet guardado!",
 	}
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(respOk)
