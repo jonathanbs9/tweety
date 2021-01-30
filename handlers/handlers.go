@@ -23,13 +23,19 @@ func Handlers() {
 	router.HandleFunc("/login", middlewares.CheckDB(routers.Login)).Methods("POST")
 	router.HandleFunc("/profile", middlewares.CheckDB(middlewares.ValidateJWT(routers.ViewProfile))).Methods("GET")
 	router.HandleFunc("/modifyprofile", middlewares.CheckDB(middlewares.ValidateJWT(routers.ModifyProfile))).Methods("PUT")
+
 	router.HandleFunc("/savetweet", middlewares.CheckDB(middlewares.ValidateJWT(routers.SaveTweet))).Methods("POST")
 	router.HandleFunc("/tweets", middlewares.CheckDB(middlewares.ValidateJWT(routers.GetTweets))).Methods("GET")
 	router.HandleFunc("/deletetweet", middlewares.CheckDB(middlewares.ValidateJWT(routers.DeleteTweet))).Methods("DELETE")
+
 	router.HandleFunc("/uploadavatar", middlewares.CheckDB(middlewares.ValidateJWT(routers.UploadAvatar))).Methods("POST")
 	router.HandleFunc("/uploadbanner", middlewares.CheckDB(middlewares.ValidateJWT(routers.UploadBanner))).Methods("POST")
 	router.HandleFunc("/getavatar", middlewares.CheckDB(routers.GetAvatar)).Methods("GET")
 	router.HandleFunc("/getbanner", middlewares.CheckDB(routers.GetBanner)).Methods("GET")
+
+	router.HandleFunc("/relation", middlewares.CheckDB(middlewares.ValidateJWT(routers.RegisterRelation))).Methods("POST")
+	router.HandleFunc("/relation", middlewares.CheckDB(middlewares.ValidateJWT(routers.DeleteRelation))).Methods("DELETE")
+	router.HandleFunc("/relation", middlewares.CheckDB(middlewares.ValidateJWT(routers.GetRelation))).Methods("GET")
 
 	/*Abrimos puerto*/
 	PORT := os.Getenv("PORT")
