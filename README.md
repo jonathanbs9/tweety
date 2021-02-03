@@ -61,5 +61,6 @@ localhost:8080
 
 - Swagger documentaction
 - Unit testing
+- Heroku deployment
 
 #
