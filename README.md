@@ -56,6 +56,64 @@ $ go run main.go
 ```sh
 localhost:8080
 ```
+### Api documentation
+
+- POST /signup
+{
+    "first_name" : string,
+    "last_name" : string,
+    "email": string,
+    "password": string,
+    "date_birth": "1992-06-21T23:06:00Z"
+}
+
+- POST /login
+{
+    "email": string,
+    "password" : string   
+}
+
+- GET /profile?id={id}
+
+- PUT /modifyprofile
+{
+    "first_name" : string,
+    "last_name" : string,
+    "date_birth": "1986-06-23T20:25:00Z",
+    "location" : string,
+    "biography": string ,
+    "website": string
+}
+
+- POST /savetweet 
+{
+    "message" : string
+}
+
+- GET /tweets?id={id}&page={pageid}
+
+- DELETE /deletetweet?id={id}
+
+- POST /uploadavatar
+{ 
+  form-data:
+  key : "avatar" => value: "avatar.png"
+}
+
+- POST /uploadbanner
+{ 
+  form-data:
+  key : "banner" => value: "banner.png"
+}
+- POST /relation?id={id}
+
+- DELETE /relation?id={id}
+
+- GET /relation?id={id}
+
+- GET /listusers?page={pageid}&type=new&search={string}
+
+- GET /followtweets?page={pageid}
 
 ### Todo's
 
