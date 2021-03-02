@@ -117,8 +117,9 @@ localhost:8080
 
 ### Todo's
 
+:heavy_check_mark: Heroku deployment  => https://tw33ty.herokuapp.com/
 - Swagger documentaction
 - Unit testing
-- Heroku deployment
+
 
 #
